@@ -16,7 +16,7 @@ public:
     Tweet();
     Tweet(int id, std::string usrName, Word tweet, int sent);
 
-    std::string getUsr();
+
     bool setSent(int sent);
 };
 

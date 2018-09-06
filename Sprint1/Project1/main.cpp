@@ -3,38 +3,31 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 
 
 
-void input(char fileName[], char words[])
+void input()
 {
-
-
-    fstream fin(fileName);
+    fstream fin("ft.csv");
     if(!fin)
     {
         cout << "File cannot be opened." << endl;
-
     }
-
-    //number of tweets
-    int numString;
-    cin >> numString;
-
-    for(int i = 0; i < numString; i ++)
+    string str[240];
+    string temp;
+    for(int i = 0; i < 240; i ++)
     {
-
-        fin >> words[i];
-
-
+        fin >> str[i];
+//        istringstream iss(temp);
+//        vector<string> v(istream_iterator<string>{iss}, istream_iterator<string>());
+//        cout << v[0];
+        cout << str[i] << endl;
     }
-    for(int i = 0; i < numString; i ++)
-    {
 
-        cout << words[i] << endl;
-    }
+
 
     fin.close();
 
@@ -43,9 +36,8 @@ void input(char fileName[], char words[])
 
 int main()
 {
-    char fileName[10];
-    char words[140];
-    input(fileName, words);
+
+    input();
 
 
     return 0;
