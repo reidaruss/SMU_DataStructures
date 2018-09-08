@@ -1,17 +1,23 @@
 #ifndef WORD_H
 #define WORD_H
 #include <string>
+#include "tweet.h"
+#include <vector>
+using namespace std;
 
 
+class Word {
 
-class Word
-{
 private:
-    std::string word;
-    std::string pOS;
+    string word;
+    string pOS;
 public:
     Word();
-    Word(std::string w, std::string pos);
+    Word(string w, string pos);
+
+    Tweet parseWords(string str);
+
+
 };
 
 #endif // WORD_H

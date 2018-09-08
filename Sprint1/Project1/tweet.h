@@ -1,22 +1,23 @@
 #ifndef TWEET_H
 #define TWEET_H
-#include "word.h"
 #include <vector>
 #include <string>
+
+using namespace std;
 
 class Tweet
 {
 private:
     int id;
-    std::string username;
+    string username;
     bool sent;
-    std::vector <Word> tweet;
+    //vector <Word> tweet;
 
 public:
     Tweet();
-    Tweet(int id, std::string usrName, Word tweet, int sent);
+    //Tweet(int id, string usrName, Word tweet, int sent);
 
-
+    //void parseTweet(vector<Word> raw);
     bool setSent(int sent);
 };
 
