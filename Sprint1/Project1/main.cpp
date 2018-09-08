@@ -6,6 +6,7 @@
 #include <vector>
 #include "word.h"
 #include "tweet.h"
+#include <algorithm>
 using namespace std;
 
 
@@ -29,19 +30,18 @@ void input(string str)
 
 
    }
-
-    //for(int i = 0; i < 240; i++){
-
-
-        cout << temp[1] << endl;
-        cout << temp[1].length() << endl;
-        string temp2;
-//        istream ss(temp[1]);
-//        while(getline(ss,temp2,','))
-//            cout << temp2 << endl;
+    cout << temp[1] << endl;
+    cout << temp[1].length() << endl;
 
 
+    temp[1].erase(remove(temp[1].begin(), temp[1].end(), '('), temp[1].end() );
+    temp[1].erase(remove(temp[1].begin(), temp[1].end(), ')'), temp[1].end() );
+    temp[1].erase(remove(temp[1].begin(), temp[1].end(), '['), temp[1].end() );
+    temp[1].erase(remove(temp[1].begin(), temp[1].end(), ']'), temp[1].end() );
+    //temp[1].erase(remove(temp[1].begin(), temp[1].end(), "'"), temp[1].end() );
 
+
+    cout << temp[1] << endl;
     fin.close();
 
 }

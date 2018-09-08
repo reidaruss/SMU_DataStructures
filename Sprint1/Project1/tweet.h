@@ -2,16 +2,17 @@
 #define TWEET_H
 #include <vector>
 #include <string>
+#include "word.h"
 
 using namespace std;
 
-class Tweet
+class Tweet : public Word
 {
 private:
     int id;
     string username;
     bool sent;
-    //vector <Word> tweet;
+    vector <Word> tweet;
 
 public:
     Tweet();
