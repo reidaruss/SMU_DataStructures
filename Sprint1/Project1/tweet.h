@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Tweet : public Word
+class Tweet
 {
 private:
     int id;
@@ -16,9 +16,8 @@ private:
 
 public:
     Tweet();
-    //Tweet(int id, string usrName, Word tweet, int sent);
+    Tweet(int id, string usrName, int sentiment, vector<Word> t);
 
-    //void parseTweet(vector<Word> raw);
     bool setSent(int sent);
 };
 

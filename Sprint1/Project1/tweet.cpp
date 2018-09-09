@@ -2,19 +2,15 @@
 //#include "word.h"
 
 
-//Tweet::Tweet(int id, std::string usrName, Word tweet, int sent)
-//{
-//    this->id = id;
-//    this-> username = usrName;
-//    //this->tweet = tweet;
-//    this->sent = false;
-//}
 
-
-void parseTweet(vector<string> raw)
+Tweet::Tweet(int id, string usrName, int sentiment, vector<Word> t)
 {
-
+    this->id = id;
+    this-> username = usrName;
+    this->sent = false;
 }
+
+
 
 
 bool setSent(int sent)    //set the sentiment to true if 4 and false if 0.
