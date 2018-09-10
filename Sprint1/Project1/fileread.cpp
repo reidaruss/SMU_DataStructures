@@ -13,6 +13,7 @@ FileRead::FileRead(char* argv[])
     counter = 0;
      //need to change this size to fit any amount.
     string str;
+    cout << argv[1] << endl; //remove
     ifstream fin(argv[1]);
     if(!fin)
     {
@@ -21,11 +22,13 @@ FileRead::FileRead(char* argv[])
 
     int i = 0;                                      //temporary  counter to increment temp[i] without for loop.
     while(getline(fin,str)){
-        temp[i] = str;
+        temp.push_back(str);
         i++;
         counter ++;                                 //counter is for number of tweets.
 
    }
+
+    cout << counter << endl;;   //remove
 
    fin.close();
 
