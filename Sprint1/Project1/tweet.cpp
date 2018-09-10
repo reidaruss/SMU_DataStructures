@@ -3,10 +3,10 @@
 
 
 
-Tweet::Tweet(int id, string usrName, int sentiment, vector<Word> t)
+Tweet::Tweet(int id, int sentiment, vector<Word> t)
 {
     this->id = id;
-    this-> username = usrName;
+
     this->sent = false;
 }
 

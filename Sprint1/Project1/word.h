@@ -1,7 +1,6 @@
 #ifndef WORD_H
 #define WORD_H
 #include <string>
-//#include "tweet.h"
 #include <vector>
 using namespace std;
 
@@ -15,7 +14,6 @@ public:
     Word();
     Word(string w, string pos);
 
-    //Tweet parseWords(string str);
 
 
 };

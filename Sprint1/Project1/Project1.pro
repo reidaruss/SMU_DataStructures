@@ -6,8 +6,12 @@ CONFIG -= qt
 SOURCES += \
         main.cpp \
     tweet.cpp \
-    word.cpp
+    word.cpp \
+    user.cpp \
+    fileread.cpp
 
 HEADERS += \
     tweet.h \
-    word.h
+    word.h \
+    user.h \
+    fileread.h
