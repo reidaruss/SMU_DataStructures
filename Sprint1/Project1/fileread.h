@@ -6,9 +6,10 @@ using namespace std;
 class FileRead
 {
 private:
-    int counter;
+
     string temp[400];
 public:
+    int counter;
     FileRead(char *argv[]);
 
     void parse();

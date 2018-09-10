@@ -8,10 +8,12 @@ SOURCES += \
     tweet.cpp \
     word.cpp \
     user.cpp \
-    fileread.cpp
+    fileread.cpp \
+    output.cpp
 
 HEADERS += \
     tweet.h \
     word.h \
     user.h \
-    fileread.h
+    fileread.h \
+    output.h

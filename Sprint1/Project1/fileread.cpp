@@ -50,19 +50,23 @@ void FileRead::parse()
     char delim = ',';
 
         string item;
-        vector<vector<string>> splitStr(counter);
+        vector<string> splitStr(counter);
         for(int i = 0; i < counter; i++)
         {
-            stringstream ss(temp[i+1]);
 
-           while(getline(ss,item,delim))    //put each element in between ',' in its own index in the vector
-                splitStr[i].push_back(item);
+            stringstream ss(temp[i+1]);
+                    //temporary vector for filling vector of vector.
+           while(getline(ss,item,delim)) //put each element in between ',' in its own index in the vector
+               {
+               splitStr.push_back(item);
+
+           }
+
+
         }
 
-        for(int i = 0; i < splitStr[i].size() ; i ++){
-            for(int j = 0; j < splitStr[i][j].size() ; j ++)
-                cout<< i << endl << splitStr[i][j] << endl;}
-
+        //for(int i = 0; i < splitStr.size() ; i ++)
+            //cout << splitStr[i] << endl;
 }
 
 
