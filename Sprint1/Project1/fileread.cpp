@@ -9,9 +9,9 @@
 using namespace std;
 FileRead::FileRead(char* argv[])
 {
-    negSent = 0;
-    posSent = 0;
-    counter = 0;
+    negSent = 0;    //ticker for total  - sentiment
+    posSent = 0;    //ticker for total + sentiment
+    counter = 0;    //ticker for total.
     string str;
     ifstream fin(argv[1]);
     if(!fin)
@@ -47,7 +47,7 @@ void FileRead::parse()
         vector<string> splitStr(counter);
         for(int i = 0; i < counter; i++)
         {
-            stringstream ss(temp[i+1]);
+            stringstream ss(temp[i+1]);   //Reference I used for stringstream use : https://thispointer.com/how-to-split-a-string-in-c/
             while(getline(ss,item,delim)) //put each element in between ',' in its own index in the vector
                {
                splitStr.push_back(item);
