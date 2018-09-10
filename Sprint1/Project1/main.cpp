@@ -15,16 +15,9 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
-
     FileRead* file = new FileRead(argv);
     file->parse();
-    int tweetNum = file->counter;
     Output o;
-    o.writeOut(argv,tweetNum);
-
-
-
-
-
+    o.writeOut(argv, file->counter, file->negSent, file->posSent);
     return 0;
 }

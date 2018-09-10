@@ -7,7 +7,7 @@ class Output
 public:
     Output();
 
-    void writeOut(char* argv[], int tweetNum);
+    void writeOut(char* argv[], int tweetNum, int negSent, int posSent);
 };
 
 #endif // OUTPUT_H

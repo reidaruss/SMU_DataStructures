@@ -11,6 +11,8 @@ private:
     vector<string> temp;
 public:
     int counter;
+    int negSent;
+    int posSent;
     FileRead(char *argv[]);
 
     void parse();

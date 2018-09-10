@@ -9,26 +9,21 @@
 using namespace std;
 FileRead::FileRead(char* argv[])
 {
-
+    negSent = 0;
+    posSent = 0;
     counter = 0;
-     //need to change this size to fit any amount.
     string str;
-    cout << argv[1] << endl; //remove
     ifstream fin(argv[1]);
     if(!fin)
     {
         cout << "File cannot be opened." << endl;
     }
-
     int i = 0;                                      //temporary  counter to increment temp[i] without for loop.
     while(getline(fin,str)){
         temp.push_back(str);
         i++;
         counter ++;                                 //counter is for number of tweets.
-
    }
-
-    cout << counter << endl;;   //remove
 
    fin.close();
 
@@ -46,31 +41,29 @@ void FileRead::parse()
         temp[i].erase(remove(temp[i].begin(), temp[i].end(), '\"'), temp[i].end() );
 
     }
-    //for(int i = 0; i < counter; i++)
-        //cout << i << endl << temp[i] << endl;
-
-
     char delim = ',';
 
         string item;
         vector<string> splitStr(counter);
         for(int i = 0; i < counter; i++)
         {
-
             stringstream ss(temp[i+1]);
-                    //temporary vector for filling vector of vector.
-           while(getline(ss,item,delim)) //put each element in between ',' in its own index in the vector
+            while(getline(ss,item,delim)) //put each element in between ',' in its own index in the vector
                {
                splitStr.push_back(item);
-
-           }
-
-
+               }
         }
 
-        //for(int i = 0; i < splitStr.size() ; i ++)
-            //cout << splitStr[i] << endl;
-}
+    for(int i = 0; i < splitStr.size(); i ++)       //Counting total number of Negative and Positive sentiment tweets.
+    {
+        if(splitStr[i] == "0")
+            negSent++;
+        else if(splitStr[i] =="4")
+            posSent++;
+    }
 
+
+
+}
 
 
