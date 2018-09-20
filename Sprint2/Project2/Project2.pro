@@ -7,4 +7,5 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
-    dsvector.h
+    dsvector.h \
+    catch.hpp
