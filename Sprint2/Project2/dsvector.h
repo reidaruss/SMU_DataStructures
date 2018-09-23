@@ -2,6 +2,7 @@
 #define DSVECTOR_H
 #include <iostream>
 using namespace std;
+
 template <typename T>
 class DSVector
 {
@@ -83,7 +84,8 @@ void DSVector<T>::pushBack(const T& val) //Add element to data then incriment si
 {
 
     if(size == capacity)
-        cout << "resize this hoe" << endl;
+        cout << "Resize this" <<endl;
+        //resize(this);
     else
     {
         data[size] = val;
@@ -95,13 +97,15 @@ template <typename T>
 void DSVector<T>::resize(const DSVector<T> &)
 {
     DSVector<T> *temp = new DSVector<T>;
+
     temp->capacity = this->capacity + 20;
     temp->size = this->size;
     for(int i =0; i <this->size; i ++)
         temp->data[i] = this->data[i];
+    cout << temp[0] << endl;
 
-    this->data = temp->data;
-    delete[] temp;
+    //this->data = temp->data;
+    //delete[] temp;
 
 }
 

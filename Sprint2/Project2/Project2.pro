@@ -4,8 +4,13 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    input.cpp \
+    output.cpp \
+    test.cpp
 
 HEADERS += \
     dsvector.h \
-    catch.hpp
+    catch.hpp \
+    input.h \
+    output.h
