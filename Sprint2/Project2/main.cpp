@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    cout<<"helll"<<endl;
+    cout<<"helllo"<<endl;
     Input* mfile = new Input(argv);
     ifstream fin(argv[1]);
     if(strcmp(argv[1], "-t") ==0)

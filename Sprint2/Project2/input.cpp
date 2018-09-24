@@ -19,46 +19,73 @@ Input::Input(char* argv[])
         cout << "File cannot be opened." << endl;
     }
     string str = "";
-    int counter = 0;
 
-    string tempstr;
+
     while(getline(fin,str))
     {
-
+        int k =0;
         if(str == "<-1>")         //check if the line is the end
             break;
-
-
-        for(int i = 0; i < str.length(); i++) //run through the line
+        if(str[0] == '<')
         {
-
-
-            if(str[i] == '<')
-               for(int j = i+1; j < str.length()-counter; j ++)     //string to int for page number
-               {
-                   if(str[j] == '>')
-                       break;
-                    else
-                       tempstr += str[j];
-               }
-            else if(str[i] == '[')
-                for(int j = i+1; j< str.length()-counter; j++)
+            k = 1;
+            string tempstr;
+            for(int i = 1; i< str.length(); i++)
+            {
+                if(str[i] == '>')
                 {
-                    if(str[j] == ']')
-                        break;
-                    else
-                        tempstr += str[j];
+                    temp.pushBack(tempstr);
+                    break;
                 }
-            else
+                else
+                    tempstr += str[i];
+            }
+        }
+        if(k != 1)
+        {
+            for(int i = 0; i < str.length() ; i++)
+            {
+                if(str[i] == '[')
+                {
+                    string tempstr;
+                    for(int j = i+1; j < str.length() - 1; j++)
+                    {
+                        if(str[j] == ']')
+                        {
+                            transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);
+                            temp.pushBack(tempstr);
+                            i = j +1;
+                            break;
+                        }
+                        else
+                            tempstr += str[j];
+                    }
+                }
+                else
+                {
+                    string tempstr;
+                    for(int j = i; j < str.length(); j++)
+                    {
+                        if(str[j] == ' ' || str[j] == '\n')
+                        {
+                            transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);
+                            temp.pushBack(tempstr);
+                            i = j;
+                            break;
+                        }
 
-            counter ++;
-
+                        else
+                            tempstr += str[j];
+                    }
+                }
+            }
         }
 
-        temp.pushBack(tempstr);
 
     }
 
     fin.close();
-    cout << temp[0] << endl;
+    for(int i = 0; i < temp.getSize(); i++)
+
+        cout << temp[i] << endl;
 }

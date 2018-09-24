@@ -15,13 +15,13 @@ public:
     DSVector(const DSVector<T>& v);//Copy Constructor
     DSVector& operator=(const DSVector<T>& rhs);//Overloaded Assignment Operator
     T& operator[](int i);
-    //~DSVector();//destructor
+    ~DSVector();//destructor
 
 
 
    void pushBack(const T val);
    T getElement(int k);
-    //void remove();
+    void remove(int k);
    void resize();
    int getSize();
 };
@@ -83,8 +83,7 @@ T DSVector<T>::getElement(int k) //Return index of k
     for(int i = 0; i < size; i ++)
         if(data[i] == k)
             return i;
-    else
-            return -1;
+
 }
 
 template <typename T>
@@ -108,9 +107,6 @@ void DSVector<T>::pushBack(const T val) //Add element to data then incriment siz
         data[size] = val;
         size++;
     }
-
-
-
 }
 
 template <typename T>
@@ -129,13 +125,21 @@ void DSVector<T>::resize()
 
 }
 
-//template <typename T>
-//DSVector<T>::~DSVector()
-//{
-//    if(this->data != nullptr)
+template <typename T>
+DSVector<T>::~DSVector()
+{
+    //if(this->data != nullptr)
+    delete[] data;
 
-//}
+}
 
+template<typename T>
+void DSVector<T>::remove(int k)
+{
+    for(int i = 0; i < size; i ++)
+        data[k] = data[k+1];
+    size --;
+}
 
 
 #endif // DSVECTOR_H
