@@ -14,15 +14,16 @@ public:
     DSVector();
     DSVector(const DSVector<T>& v);//Copy Constructor
     DSVector& operator=(const DSVector<T>& rhs);//Overloaded Assignment Operator
-    T& operator[](const T&);
+    T& operator[](int i);
     //~DSVector();//destructor
 
 
 
-   void pushBack(const T& val);
-   T getElement(int i);
+   void pushBack(const T val);
+   T getElement(int k);
     //void remove();
-   void resize(const DSVector<T>& );
+   void resize();
+   int getSize();
 };
 
 
@@ -54,9 +55,12 @@ DSVector<T>& DSVector<T>::operator=(const DSVector<T>& rhs) // Overloaded assign
 }
 
 template <typename T>
-T& DSVector<T>::operator[](const T& i)
+T& DSVector<T>::operator[](int i)
 {
-    return this->data[i];
+    if(i >= size)
+        cerr << "Unable to access. Out of scope" << endl;
+    else
+        return data[i];
 }
 
 template <typename T>
@@ -74,38 +78,54 @@ DSVector<T>::DSVector(const DSVector<T>& v) //Copy Constructor
 
 }
 template <typename T>
-T DSVector<T>::getElement(int i) //Return val at i
+T DSVector<T>::getElement(int k) //Return index of k
 {
-    return data[i];
+    for(int i = 0; i < size; i ++)
+        if(data[i] == k)
+            return i;
+    else
+            return -1;
 }
 
 template <typename T>
-void DSVector<T>::pushBack(const T& val) //Add element to data then incriment size.
+int DSVector<T>::getSize()
 {
+    return size;
+}
 
-    if(size == capacity)
-        cout << "Resize this" <<endl;
-        //resize(this);
+template <typename T>
+void DSVector<T>::pushBack(const T val) //Add element to data then incriment size.
+{
+    if(size < capacity)
+    {
+
+        data[size] = val;
+        size++;
+    }
     else
     {
+        resize();
         data[size] = val;
-        size ++;
+        size++;
     }
+
+
+
 }
 
 template <typename T>
-void DSVector<T>::resize(const DSVector<T> &)
+void DSVector<T>::resize()
 {
-    DSVector<T> *temp = new DSVector<T>;
 
-    temp->capacity = this->capacity + 20;
-    temp->size = this->size;
-    for(int i =0; i <this->size; i ++)
-        temp->data[i] = this->data[i];
-    cout << temp[0] << endl;
 
-    //this->data = temp->data;
-    //delete[] temp;
+    capacity *= 2;
+    T* temp = new T[capacity];
+    for(int i =0; i <size; i ++)
+        temp[i] = data[i];
+    delete[] data;
+    data = temp;
+
+
 
 }
 

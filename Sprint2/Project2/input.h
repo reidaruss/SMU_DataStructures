@@ -1,11 +1,18 @@
 #ifndef INPUT_H
 #define INPUT_H
+#include "dsvector.h"
 
 
 class Input
 {
+private:
+
+
 public:
-    Input();
+
+   Input(char *argv[]);
+
+
 };
 
 #endif // INPUT_H

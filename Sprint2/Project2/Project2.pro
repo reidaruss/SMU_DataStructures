@@ -7,10 +7,12 @@ SOURCES += \
         main.cpp \
     input.cpp \
     output.cpp \
-    test.cpp
+    test.cpp \
+    index.cpp
 
 HEADERS += \
     dsvector.h \
     catch.hpp \
     input.h \
-    output.h
+    output.h \
+    index.h
