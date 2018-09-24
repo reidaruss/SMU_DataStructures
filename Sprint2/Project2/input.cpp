@@ -66,11 +66,11 @@ Input::Input(char* argv[])
                                     if(tempbool == true)
                                         temp[k].checkPage(page);
                                 }
-                                if(tempbool == false)
-                                {
-                                    temp[temp.getSize()].setString(tempstr);
-                                    temp[temp.getSize()].checkPage(page);
-                                }
+                            }
+                            if(tempbool == false)
+                            {
+                                temp[temp.getSize()].setString(tempstr);
+                                temp[temp.getSize()].checkPage(page);
                             }
                             i = j +1;       //set new i
                             break;
@@ -92,8 +92,14 @@ Input::Input(char* argv[])
 //                                    tempstr.erase(k--, 1);
 //                                    len = tempstr.size();
 //                                }
+
                             transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);   //Make lowercase. Used this : https://math-linux.com/c/faq-c/faq-c-stl/article/how-to-convert-string-to-lower-case-or-upper-case-in-c
                             bool tempbool = false;
+//                            if(temp.getSize() == 0)
+//                            {
+//                                temp[0].setString(tempstr);
+//                                temp[0].checkPage(page);
+//                            }
                             for(int k = 0; k < temp.getSize(); k++)
                             {
                                 if(tempstr == temp[k].getWord())
@@ -102,11 +108,12 @@ Input::Input(char* argv[])
                                     if(tempbool == true)
                                         temp[k].checkPage(page);
                                 }
-                                if(tempbool == false)
-                                {
-                                    temp[temp.getSize()].setString(tempstr);
-                                    temp[temp.getSize()].checkPage(page);
-                                }
+
+                            }
+                            if(tempbool == false)
+                            {
+                                temp[temp.getSize()].setString(tempstr);
+                                temp[temp.getSize()].checkPage(page);
                             }
 
                             i = j;

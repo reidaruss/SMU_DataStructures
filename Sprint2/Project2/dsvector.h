@@ -112,8 +112,6 @@ void DSVector<T>::pushBack(const T val) //Add element to data then incriment siz
 template <typename T>
 void DSVector<T>::resize()
 {
-
-
     capacity *= 2;
     T* temp = new T[capacity];
     for(int i =0; i <size; i ++)
