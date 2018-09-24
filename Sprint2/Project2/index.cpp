@@ -8,22 +8,34 @@
 
 using namespace std;
 
-//Index::Index()
-//{
-//    pages = new DSVector<int>;
-//}
 
-
-
-
-template<typename T>
-void Index<T>::sort(const DSVector<T>& temp)
+Index::Index()
 {
-    //DSVector<pair<string,DSVector<int>>>* vec= new DSVector<pair<string,DSVector<int>>>; //Vector of pairs. First element is the word, second is a vector of page numbers.
-
-
-
-
 
 
 }
+
+void Index::setString(string strIn)
+{
+    s = strIn;
+}
+
+void Index::checkPage(string p) //check if page is already in the vector of pages, if not add it
+{
+    bool in = false;
+    for(int i =0; i < pages.getSize(); i++)
+        if(pages[i] == p)
+            in = true;
+
+    if(in == false)
+        pages.pushBack(p);
+
+}
+
+
+
+
+
+
+
+

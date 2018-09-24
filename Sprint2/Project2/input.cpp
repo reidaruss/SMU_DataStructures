@@ -9,10 +9,13 @@
 #include <string>
 #include <cstdlib>
 
+
 using namespace std;
 Input::Input(char* argv[])
 {
-    DSVector<string> temp;
+    //DSVector<pair<int,DSVector<string>>> pV;
+    //DSVector<string> temp;
+    DSVector<Index> temp;
     ifstream fin(argv[2]);
     if(!fin)
     {
@@ -23,25 +26,26 @@ Input::Input(char* argv[])
 
     while(getline(fin,str))
     {
+        string page;
         int k =0;
         if(str == "<-1>")         //check if the line is the end
             break;
-        if(str[0] == '<')
+        if(str[0] == '<')         //check for new page
         {
-            k = 1;
+            k = 1;      //Set for newpage line
             string tempstr;
             for(int i = 1; i< str.length(); i++)
             {
-                if(str[i] == '>')
+                if(str[i] == '>')   //iterate until finds >
                 {
-                    temp.pushBack(tempstr);
+                    page = tempstr;
                     break;
                 }
                 else
-                    tempstr += str[i];
+                    tempstr += str[i];  //append temporary string until delimeter ">".
             }
         }
-        if(k != 1)
+        if(k != 1)      //Continue if line is not a new page line.
         {
             for(int i = 0; i < str.length() ; i++)
             {
@@ -50,15 +54,29 @@ Input::Input(char* argv[])
                     string tempstr;
                     for(int j = i+1; j < str.length(); j++)
                     {
-                        if(str[j] == ']')
+                        if(str[j] == ']')   //iterate until closing bracket
                         {
-                            transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);
-                            temp.pushBack(tempstr);
-                            i = j +1;
+                            transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower); //Make lowercase. Used this : https://math-linux.com/c/faq-c/faq-c-stl/article/how-to-convert-string-to-lower-case-or-upper-case-in-c
+                            bool tempbool = false;
+                            for(int k = 0; k < temp.getSize(); k++)
+                            {
+                                if(tempstr == temp[k].getWord())
+                                {
+                                    tempbool = true;
+                                    if(tempbool == true)
+                                        temp[k].checkPage(page);
+                                }
+                                if(tempbool == false)
+                                {
+                                    temp[temp.getSize()].setString(tempstr);
+                                    temp[temp.getSize()].checkPage(page);
+                                }
+                            }
+                            i = j +1;       //set new i
                             break;
                         }
                         else
-                            tempstr += str[j];
+                            tempstr += str[j];  //append temporary string until delimeter "]".
                     }
                 }
                 else
@@ -66,16 +84,36 @@ Input::Input(char* argv[])
                     string tempstr;
                     for(int j = i; j < str.length(); j++)
                     {
-                        if(str[j] == ' ' || j == str.length()-1)
+                        if(str[j] == ' ' || j == str.size()-1)  //delimeter by spaces or end of line.
                         {
-                            transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);
-                            temp.pushBack(tempstr);
+//                            for(int k = 0, len = tempstr.length(); k< len; k++)
+//                                if(ispunct(str[k]))
+//                                {
+//                                    tempstr.erase(k--, 1);
+//                                    len = tempstr.size();
+//                                }
+                            transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);   //Make lowercase. Used this : https://math-linux.com/c/faq-c/faq-c-stl/article/how-to-convert-string-to-lower-case-or-upper-case-in-c
+                            bool tempbool = false;
+                            for(int k = 0; k < temp.getSize(); k++)
+                            {
+                                if(tempstr == temp[k].getWord())
+                                {
+                                    tempbool = true;
+                                    if(tempbool == true)
+                                        temp[k].checkPage(page);
+                                }
+                                if(tempbool == false)
+                                {
+                                    temp[temp.getSize()].setString(tempstr);
+                                    temp[temp.getSize()].checkPage(page);
+                                }
+                            }
+
                             i = j;
                             break;
                         }
-
                         else
-                            tempstr += str[j];
+                            tempstr += str[j];  //append temp string until delim
                     }
                 }
             }
@@ -85,7 +123,6 @@ Input::Input(char* argv[])
     }
 
     fin.close();
-    for(int i = 0; i < temp.getSize(); i++)
-
-        cout << temp[i] << endl;
+    for(int i = 0; i < temp.getSize(); i++) //remove this
+        cout << temp[i].getWord() << endl;
 }

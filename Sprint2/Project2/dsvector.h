@@ -1,6 +1,7 @@
 #ifndef DSVECTOR_H
 #define DSVECTOR_H
 #include <iostream>
+//#include "index.h"
 using namespace std;
 
 template <typename T>
@@ -24,6 +25,7 @@ public:
     void remove(int k);
    void resize();
    int getSize();
+   int getCapacity() {return capacity;}
 };
 
 
@@ -80,9 +82,7 @@ DSVector<T>::DSVector(const DSVector<T>& v) //Copy Constructor
 template <typename T>
 T DSVector<T>::getElement(int k) //Return index of k
 {
-    for(int i = 0; i < size; i ++)
-        if(data[i] == k)
-            return i;
+    return data[k];
 
 }
 

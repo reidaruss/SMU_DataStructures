@@ -3,17 +3,19 @@
 #include "dsvector.h"
 
 using namespace std;
-template <typename T>
+
 class Index
 {
 private:
     string s;
-    DSVector<int>* pages;
-    //DSVector<pair<string,DSVector<int>>> v;
+    DSVector<string> pages;
+
 public:
     Index();
+    string getWord() {return s;}
+    void setString(string strIn);
+    void checkPage(string p);
 
-    void sort(const DSVector<T>& temp);
 
 };
 
