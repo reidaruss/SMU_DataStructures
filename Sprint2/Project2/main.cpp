@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    cout<<"helllo"<<endl;
+    cout<<"hello"<<endl;
     Input* mfile = new Input(argv);
     ifstream fin(argv[1]);
     if(strcmp(argv[1], "-t") ==0)
@@ -20,22 +20,10 @@ int main(int argc, char* argv[])
 
 
     DSVector<int> v;
-//    v.pushBack(1);
-//    v.pushBack(2);
-//    v.pushBack(3);
-//    v.pushBack(4);
-//    v.pushBack(5);
-//    v.pushBack(6);
-//    v.pushBack(7);
-//    v.pushBack(8);
-//    v.pushBack(9);
-//    v.pushBack(10);
-//    v.pushBack(11);
+
 
     DSVector<int> t = v;
-//    t.pushBack(8);
-//    t.pushBack(24);
-//    t.pushBack(100);
+
 
 
 

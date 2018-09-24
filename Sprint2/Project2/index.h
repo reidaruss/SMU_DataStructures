@@ -7,12 +7,14 @@ template <typename T>
 class Index
 {
 private:
+    string s;
+    DSVector<int>* pages;
     //DSVector<pair<string,DSVector<int>>> v;
 public:
+    Index();
 
+    void sort(const DSVector<T>& temp);
 
-    void parse(const DSVector<T> &temp);
-    void sort();
 };
 
 #endif // INDEX_H

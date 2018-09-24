@@ -48,7 +48,7 @@ Input::Input(char* argv[])
                 if(str[i] == '[')
                 {
                     string tempstr;
-                    for(int j = i+1; j < str.length() - 1; j++)
+                    for(int j = i+1; j < str.length(); j++)
                     {
                         if(str[j] == ']')
                         {
@@ -66,7 +66,7 @@ Input::Input(char* argv[])
                     string tempstr;
                     for(int j = i; j < str.length(); j++)
                     {
-                        if(str[j] == ' ' || str[j] == '\n')
+                        if(str[j] == ' ' || j == str.length()-1)
                         {
                             transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);
                             temp.pushBack(tempstr);
