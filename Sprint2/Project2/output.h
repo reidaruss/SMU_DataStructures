@@ -9,8 +9,8 @@ class Output
 public:
     Output();
 
-    void writeOut(char* argv[]);
-    void sortWords(const DSVector<Index>& v);
+    void writeOut(char* argv[], DSVector<Index> v);
+    DSVector<Index> sortWords(DSVector<Index> &v);
 };
 
 #endif // OUTPUT_H

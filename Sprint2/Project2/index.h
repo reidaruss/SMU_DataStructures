@@ -14,8 +14,14 @@ private:
 public:
     Index();
     string getWord() {return s;}
+    int getPagesSize() {return pages.getSize();}
+    DSVector<string> returnPages(){return pages;}
     void setString(const string strIn);
     void checkPage(const string p);
+    void print();
+
+    bool operator<(const Index &i2);
+
 
 
 };

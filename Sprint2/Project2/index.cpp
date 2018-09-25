@@ -33,6 +33,24 @@ void Index::checkPage(const string p) //check if page is already in the vector o
 
 }
 
+void Index::print()
+{
+    cout << "[" << s.at(0) << "]" << endl;
+    cout << s << ": " ;
+    for(int i = 0; i < pages.getSize(); i ++)
+    {
+        if(i < pages.getSize() -1)
+            cout << pages[i] << ", ";
+        else if(i == pages.getSize()-1)
+            cout << pages[i] << endl;
+    }
+}
+
+bool Index::operator <(const Index &i2)
+{
+    return this->getWord() < i2.s;
+}
+
 
 
 

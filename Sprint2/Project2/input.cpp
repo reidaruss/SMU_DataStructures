@@ -8,22 +8,23 @@
 #include <algorithm>
 #include <string>
 #include <cstdlib>
+#include "output.h"
 
 
 using namespace std;
 Input::Input(char* argv[])
 {
 
-    DSVector<Index> temp;
+    DSVector<Index> temp;       //Each index object has a vector of page numbers and a string for a word
     ifstream fin(argv[2]);
     if(!fin)
     {
         cout << "File cannot be opened." << endl;
     }
-    string str = "";
+    string str = "";            //string to take in each line
 
-    string page;
-    while(getline(fin,str))
+    string page;                //string to hold page numbers
+    while(getline(fin,str))     //get each line then divide each line up bellow
     {
 
         int k =0;
@@ -49,15 +50,22 @@ Input::Input(char* argv[])
             for(int i = 0; i < str.length() ; i++)
             {
 
-                if(str[i] == '[')
+                if(str[i] == '[')       //looking for phrases
                 {
                     string tempstr;
                     for(int j = i+1; j < str.length(); j++)
                     {
                         if(str[j] == ']')   //iterate until closing bracket
                         {
+                            for(int k = 0; k < tempstr.length(); k++)       //take out punctuation
+                            {
+                                if(ispunct(tempstr[k]))
+                                {
+                                    tempstr.erase(k--,1);
+                                }
+                            }
                             transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower); //Make lowercase. Used this : https://math-linux.com/c/faq-c/faq-c-stl/article/how-to-convert-string-to-lower-case-or-upper-case-in-c
-                            bool tempbool = false;
+                            bool tempbool = false;      //set to true if word is already in the vector
                             for(int k = 0; k < temp.getSize(); k++)
                             {
                                 if(tempstr == temp[k].getWord())
@@ -67,7 +75,7 @@ Input::Input(char* argv[])
                                         temp[k].checkPage(page);
                                 }
                             }
-                            if(tempbool == false)
+                            if(tempbool == false)       //if not create a new object and add the word and page and push it back to the vector
                             {
                                 Index index;
                                 index.setString(tempstr);
@@ -86,16 +94,17 @@ Input::Input(char* argv[])
                 else
                 {
                     string tempstr;
-                    for(int j = i; j < str.length(); j++)
+                    for(int j = i; j <= str.length(); j++)
                     {
                         if(str[j] == ' ' || j == str.size()-1)  //delimeter by spaces or end of line.
                         {
-//                            for(int k = 0, len = tempstr.length(); k< len; k++)
-//                                if(ispunct(str[k]))
-//                                {
-//                                    tempstr.erase(k--, 1);
-//                                    len = tempstr.size();
-//                                }
+                            for(int k = 0; k < tempstr.length(); k++)       //remove punctuation
+                            {
+                                if(ispunct(tempstr[k]))
+                                {
+                                    tempstr.erase(k--,1);
+                                }
+                            }
 
                             transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);   //Make lowercase. Used this : https://math-linux.com/c/faq-c/faq-c-stl/article/how-to-convert-string-to-lower-case-or-upper-case-in-c
                             bool tempbool = false;
@@ -131,6 +140,12 @@ Input::Input(char* argv[])
     }
 
     fin.close();
-    for(int i = 0; i < temp.getSize(); i++) //remove this
-        cout << temp[i].getWord() << endl;
+    for(int i =0; i < temp.getSize(); i ++)
+        temp[i].print();
+    //Output o;
+    //DSVector<Index> sortedV = o.sortWords(temp);
+    cout << "SORTED::::::::::::::::::::::::::::::::::::" << endl;
+    //for(int i =0; i < sortedV.getSize(); i ++)
+        //sortedV[i].print();
+    //o.writeOut(argv, temp);
 }
