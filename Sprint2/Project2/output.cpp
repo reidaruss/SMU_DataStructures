@@ -41,7 +41,11 @@ void Output::writeOut(char* argv[], DSVector<Index> v)
     ofstream fout(argv[3]); //create output stream object
     if(fout.is_open())
     {
-        //for(int i = 0; i < v.getSize(); i++)
+
+        for(int i = v.getSize(); i > 0; i--)
+        {
+            v[i].print();
+        }
 
     }
     else

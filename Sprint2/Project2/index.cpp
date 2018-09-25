@@ -35,7 +35,7 @@ void Index::checkPage(const string p) //check if page is already in the vector o
 
 void Index::print()
 {
-    cout << "[" << s.at(0) << "]" << endl;
+    //cout << "[" << s.at(0) << "]" << endl;
     cout << s << ": " ;
     for(int i = 0; i < pages.getSize(); i ++)
     {
