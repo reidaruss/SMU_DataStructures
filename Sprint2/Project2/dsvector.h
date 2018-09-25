@@ -20,12 +20,13 @@ public:
 
 
 
-   void pushBack(const T val);
+   void pushBack(T val);
    T getElement(int k);
     void remove(int k);
    void resize();
    int getSize();
    int getCapacity() {return capacity;}
+   void sizeInc();
 };
 
 
@@ -49,7 +50,7 @@ DSVector<T>& DSVector<T>::operator=(const DSVector<T>& rhs) // Overloaded assign
     size = rhs.size;
     capacity = rhs.capacity;
 
-    data = new T[rhs.size];
+    data = new T[rhs.capacity];
     for(int i = 0; i < rhs.size; i++)
         data[i] = rhs.data[i];
 
@@ -60,7 +61,7 @@ template <typename T>
 T& DSVector<T>::operator[](int i)
 {
     if(i >= size)
-        cerr << "Unable to access. Out of scope" << endl;
+        cerr << "op[] Unable to access. Out of scope" << endl;
     else
         return data[i];
 }
@@ -80,10 +81,18 @@ DSVector<T>::DSVector(const DSVector<T>& v) //Copy Constructor
 
 }
 template <typename T>
-T DSVector<T>::getElement(int k) //Return index of k
+T DSVector<T>::getElement(int k) //Return value at index k
 {
     return data[k];
 
+}
+
+template <typename T>
+void DSVector<T>::sizeInc()
+{
+    size ++;
+    if(size == capacity)
+        resize();
 }
 
 template <typename T>
@@ -93,7 +102,7 @@ int DSVector<T>::getSize()
 }
 
 template <typename T>
-void DSVector<T>::pushBack(const T val) //Add element to data then incriment size.
+void DSVector<T>::pushBack(T val) //Add element to data then incriment size.
 {
     if(size < capacity)
     {

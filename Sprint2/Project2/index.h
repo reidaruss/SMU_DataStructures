@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 class Index
 {
 private:
@@ -13,8 +14,8 @@ private:
 public:
     Index();
     string getWord() {return s;}
-    void setString(string strIn);
-    void checkPage(string p);
+    void setString(const string strIn);
+    void checkPage(const string p);
 
 
 };

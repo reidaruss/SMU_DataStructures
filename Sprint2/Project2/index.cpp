@@ -11,16 +11,17 @@ using namespace std;
 
 Index::Index()
 {
+    s = "";
 
 
 }
 
-void Index::setString(string strIn)
+void Index::setString(const string strIn)
 {
     s = strIn;
 }
 
-void Index::checkPage(string p) //check if page is already in the vector of pages, if not add it
+void Index::checkPage(const string p) //check if page is already in the vector of pages, if not add it
 {
     bool in = false;
     for(int i =0; i < pages.getSize(); i++)

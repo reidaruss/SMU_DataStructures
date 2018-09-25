@@ -13,8 +13,7 @@
 using namespace std;
 Input::Input(char* argv[])
 {
-    //DSVector<pair<int,DSVector<string>>> pV;
-    //DSVector<string> temp;
+
     DSVector<Index> temp;
     ifstream fin(argv[2]);
     if(!fin)
@@ -23,10 +22,10 @@ Input::Input(char* argv[])
     }
     string str = "";
 
-
+    string page;
     while(getline(fin,str))
     {
-        string page;
+
         int k =0;
         if(str == "<-1>")         //check if the line is the end
             break;
@@ -49,6 +48,7 @@ Input::Input(char* argv[])
         {
             for(int i = 0; i < str.length() ; i++)
             {
+
                 if(str[i] == '[')
                 {
                     string tempstr;
@@ -69,8 +69,12 @@ Input::Input(char* argv[])
                             }
                             if(tempbool == false)
                             {
-                                temp[temp.getSize()].setString(tempstr);
-                                temp[temp.getSize()].checkPage(page);
+                                Index index;
+                                index.setString(tempstr);
+                                index.checkPage(page);
+                                temp.pushBack(index);
+
+
                             }
                             i = j +1;       //set new i
                             break;
@@ -95,11 +99,6 @@ Input::Input(char* argv[])
 
                             transform(tempstr.begin(), tempstr.end(), tempstr.begin(),::tolower);   //Make lowercase. Used this : https://math-linux.com/c/faq-c/faq-c-stl/article/how-to-convert-string-to-lower-case-or-upper-case-in-c
                             bool tempbool = false;
-//                            if(temp.getSize() == 0)
-//                            {
-//                                temp[0].setString(tempstr);
-//                                temp[0].checkPage(page);
-//                            }
                             for(int k = 0; k < temp.getSize(); k++)
                             {
                                 if(tempstr == temp[k].getWord())
@@ -112,8 +111,10 @@ Input::Input(char* argv[])
                             }
                             if(tempbool == false)
                             {
-                                temp[temp.getSize()].setString(tempstr);
-                                temp[temp.getSize()].checkPage(page);
+                                Index index;
+                                index.setString(tempstr);
+                                index.checkPage(page);
+                                temp.pushBack(index);
                             }
 
                             i = j;
