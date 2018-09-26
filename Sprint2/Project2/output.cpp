@@ -24,7 +24,7 @@ DSVector<Index> Output::sortWords(DSVector<Index>& v)
             if(v[j-1] < v[j])
             {
 
-                temp = v[j-1].getWord();
+                temp = v[j-1].getWord();        //if element to the left is smaller, flip them
                 v[j-1].setString(v[j].getWord());
                 v[j].setString(temp);
             }
@@ -46,15 +46,15 @@ void Output::writeOut(char* argv[], DSVector<Index> v)
 
         for(int i = v.getSize()-2; i > 0; i--)
         {
-            if(putchar(toupper(v[i].getFE())) != cat)
+            if(putchar(toupper(v[i].getFE())) != cat)   //check if first letter is equal to the current category
             {
-                cat = putchar(toupper(v[i].getFE()));
+                cat = putchar(toupper(v[i].getFE()));       //if not then make new category
                 fout << "[" << cat << "]" << endl;
                 fout << v[i].getWord() << ": " << v[i].returnPages() << endl;
             }
             else
             {
-                fout << v[i].getWord() << ": " << v[i].returnPages() << endl;
+                fout << v[i].getWord() << ": " << v[i].returnPages() << endl;   //if category is the same output new word
             }
         }
 
