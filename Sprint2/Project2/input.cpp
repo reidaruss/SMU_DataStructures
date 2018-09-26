@@ -140,11 +140,11 @@ Input::Input(char* argv[])
     }
 
     fin.close();
-//    for(int i =0; i < temp.getSize(); i ++)
-//        temp[i].print();
+
     Output o;
     DSVector<Index> sortedV = o.sortWords(temp);
     cout << "SORTED::::::::::::::::::::::::::::::::::::" << endl;
-
+    //for(int i =sortedV.getSize()-2; i >0 ; i --)
+        //sortedV[i].print();
     o.writeOut(argv, sortedV);
 }

@@ -15,10 +15,11 @@ public:
     Index();
     string getWord() {return s;}
     int getPagesSize() {return pages.getSize();}
-    DSVector<string> returnPages(){return pages;}
+    string returnPages();
+    char getFE();
     void setString(const string strIn);
     void checkPage(const string p);
-    void print();
+    void print(ofstream &fout);
 
     bool operator<(const Index &i2);
 

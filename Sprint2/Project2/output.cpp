@@ -41,10 +41,19 @@ void Output::writeOut(char* argv[], DSVector<Index> v)
     ofstream fout(argv[3]); //create output stream object
     if(fout.is_open())
     {
+        char cat = '\0'; //category to be written with.
 
-        for(int i = v.getSize(); i > 0; i--)
+        for(int i = v.getSize()-2; i > 0; i--)
         {
-            v[i].print();
+            if(v[i].getFE() != cat)
+            {
+                cat = v[i].getFE();
+                fout << "[" << cat << "]" << endl;
+            }
+            else
+            {
+                fout << v[i].getWord() << ": " << v[i].returnPages() << endl;
+            }
         }
 
     }

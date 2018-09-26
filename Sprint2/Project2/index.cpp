@@ -33,18 +33,38 @@ void Index::checkPage(const string p) //check if page is already in the vector o
 
 }
 
-void Index::print()
+string Index::returnPages()
 {
-    //cout << "[" << s.at(0) << "]" << endl;
-    cout << s << ": " ;
+    string pgstr;
     for(int i = 0; i < pages.getSize(); i ++)
     {
         if(i < pages.getSize() -1)
-            cout << pages[i] << ", ";
+            pgstr += pages[i] + ", ";
         else if(i == pages.getSize()-1)
-            cout << pages[i] << endl;
+            pgstr += pages[i];
     }
+
+    return pgstr;
+
 }
+
+char Index::getFE()
+{
+    return s.at(0);
+}
+
+//void Index::print(ofstream& fout)
+//{
+//    //cout << "[" << s.at(0) << "]" << endl;
+//    fout << s << ": " ;
+//    for(int i = 0; i < pages.getSize(); i ++)
+//    {
+//        if(i < pages.getSize() -1)
+//            fout << pages[i] << ", ";
+//        else if(i == pages.getSize()-1)
+//            fout << pages[i] << endl;
+//    }
+//}
 
 bool Index::operator <(const Index &i2)
 {
