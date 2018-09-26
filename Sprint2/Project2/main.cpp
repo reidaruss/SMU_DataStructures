@@ -18,5 +18,7 @@ int main(int argc, char* argv[])
     {
         return Catch::Session().run();
     }
+
+    delete[] mfile;
     return 0;
 }

@@ -141,10 +141,7 @@ Input::Input(char* argv[])
 
     fin.close();
 
-    Output o;
-    DSVector<Index> sortedV = o.sortWords(temp);
-    cout << "SORTED::::::::::::::::::::::::::::::::::::" << endl;
-    //for(int i =sortedV.getSize()-2; i >0 ; i --)
-        //sortedV[i].print();
-    o.writeOut(argv, sortedV);
+    Output o; //create output object
+    DSVector<Index> sortedV = o.sortWords(temp); //sort the vector of index objects by word
+    o.writeOut(argv, sortedV);          //pass in sorted vector and write out.
 }

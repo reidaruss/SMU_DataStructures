@@ -18,7 +18,7 @@ Index::Index()
 
 void Index::setString(const string strIn)
 {
-    s = strIn;
+    s = strIn;      //set word
 }
 
 void Index::checkPage(const string p) //check if page is already in the vector of pages, if not add it
@@ -36,7 +36,7 @@ void Index::checkPage(const string p) //check if page is already in the vector o
 string Index::returnPages()
 {
     string pgstr;
-    for(int i = 0; i < pages.getSize(); i ++)
+    for(int i = 0; i < pages.getSize(); i ++)       //add the pages into a string ready to be written out
     {
         if(i < pages.getSize() -1)
             pgstr += pages[i] + ", ";
@@ -50,21 +50,10 @@ string Index::returnPages()
 
 char Index::getFE()
 {
-    return s.at(0);
+    return s.at(0);     //return first character in the word, used in output
 }
 
-//void Index::print(ofstream& fout)
-//{
-//    //cout << "[" << s.at(0) << "]" << endl;
-//    fout << s << ": " ;
-//    for(int i = 0; i < pages.getSize(); i ++)
-//    {
-//        if(i < pages.getSize() -1)
-//            fout << pages[i] << ", ";
-//        else if(i == pages.getSize()-1)
-//            fout << pages[i] << endl;
-//    }
-//}
+
 
 bool Index::operator <(const Index &i2)
 {

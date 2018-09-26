@@ -104,7 +104,7 @@ int DSVector<T>::getSize()
 template <typename T>
 void DSVector<T>::pushBack(T val) //Add element to data then incriment size.
 {
-    if(size < capacity)
+    if(size < capacity)     //make sure do not need to resize
     {
 
         data[size] = val;
@@ -112,7 +112,7 @@ void DSVector<T>::pushBack(T val) //Add element to data then incriment size.
     }
     else
     {
-        resize();
+        resize();           //resize then push back if needed
         data[size] = val;
         size++;
     }
@@ -121,12 +121,12 @@ void DSVector<T>::pushBack(T val) //Add element to data then incriment size.
 template <typename T>
 void DSVector<T>::resize()
 {
-    capacity *= 2;
+    capacity *= 2;          //expand capacity by factor of 2
     T* temp = new T[capacity];
     for(int i =0; i <size; i ++)
-        temp[i] = data[i];
+        temp[i] = data[i];          //store data into temp
     delete[] data;
-    data = temp;
+    data = temp;                //copy back over
 
 
 
@@ -135,7 +135,7 @@ void DSVector<T>::resize()
 template <typename T>
 DSVector<T>::~DSVector()
 {
-    //if(this->data != nullptr)
+
     delete[] data;
 
 }
@@ -143,7 +143,7 @@ DSVector<T>::~DSVector()
 template<typename T>
 void DSVector<T>::remove(int k)
 {
-    for(int i = 0; i < size; i ++)
+    for(int i = 0; i < size; i ++)      //shift all elements to the right of the element over to overwrite that index and decrease size.
         data[k] = data[k+1];
     size --;
 }
