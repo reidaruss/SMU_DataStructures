@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string.h>
+#include <ctype.h>
 
 
 
@@ -22,7 +23,7 @@ DSVector<Index> Output::sortWords(DSVector<Index>& v)
 
             if(v[j-1] < v[j])
             {
-                //strcpy(temp, v[j-1].getWord());
+
                 temp = v[j-1].getWord();
                 v[j-1].setString(v[j].getWord());
                 v[j].setString(temp);
@@ -45,10 +46,11 @@ void Output::writeOut(char* argv[], DSVector<Index> v)
 
         for(int i = v.getSize()-2; i > 0; i--)
         {
-            if(v[i].getFE() != cat)
+            if(putchar(toupper(v[i].getFE())) != cat)
             {
-                cat = v[i].getFE();
+                cat = putchar(toupper(v[i].getFE()));
                 fout << "[" << cat << "]" << endl;
+                fout << v[i].getWord() << ": " << v[i].returnPages() << endl;
             }
             else
             {

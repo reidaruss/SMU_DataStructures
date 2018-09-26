@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include "dsvector.h"
+#include <ctype.h>
 
 using namespace std;
 
