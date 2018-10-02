@@ -5,8 +5,11 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    int numWords;
+    int numExtract;
     Input i;
-    i.fileIn(argv);
+    string* words = i.fileIn(argv, numWords, numExtract);
+    i.sort(numWords, words);
     return 0;
 }
 
