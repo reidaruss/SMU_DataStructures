@@ -5,7 +5,9 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-    input.cpp
+    input.cpp \
+    output.cpp
 
 HEADERS += \
-    input.h
+    input.h \
+    output.h

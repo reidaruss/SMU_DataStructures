@@ -32,12 +32,7 @@ string* Input::fileIn(char* argv[], int& numWords, int& numExtract)
     }
 
     fin.close();
-    cout << numWords << endl << numExtract << endl;
-
-
-
     return words;
-
 }
 
 void Input::sort(int numWords, string * words)
@@ -58,9 +53,4 @@ void Input::sort(int numWords, string * words)
         }
     }
 
-
-    for(int i = 0; i < numWords; i ++)
-    {
-        cout << words[i] << endl;
-    }
 }
