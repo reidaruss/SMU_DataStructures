@@ -43,14 +43,51 @@ void Input::sort(int numWords, string * words)
         for(int j = 1; j < numWords; j++)
         {
 
-            if(words[j-1].length() < words[j].length())
+            if(words[j-1].length() > words[j].length())
             {
 
-                temp = words[j-1];        //if element to the left is smaller, flip them
+                temp = words[j-1];        //if element to the left is bigger, flip them
                 words[j-1] = words[j];
                 words[j] = temp;
             }
         }
     }
+
+
+    int len = 1;    //Length category for sorting all of same length alphabetically.
+    for(int i = 0; i < numWords; i ++)
+    {
+
+
+            int tempi;
+            for(int j = i +1; j <= numWords; j++)
+            {
+                if(words[j].length() != len)
+                {
+                    tempi = j;
+                    break;
+                }
+
+            }
+            for(int j = i; j < tempi; j ++)
+            {
+                for(int k = i+1 ; k < tempi; k++)
+                {
+                            if(words[k-1] > words[k])
+                            {
+                                temp = words[k-1];        //if element to the left is bigger, flip them
+                                words[k-1] = words[k];
+                                words[k] = temp;
+
+                            }
+                }
+
+            }
+            i = tempi -1;
+            len = words[tempi].length();
+
+
+    }
+
 
 }

@@ -19,7 +19,7 @@ void Output::writeOut(char* argv[], string *words, int numWords, int numExtract 
     {
 
 
-        for(int i = 0; i < numWords; i++)
+        for(int i = 0; i < numExtract; i++)
         {
             fout << words[i] << endl;
         }
