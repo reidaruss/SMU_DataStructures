@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
     i.sort(numWords, words);
     Output o;
     o.writeOut(argv, words, numWords, numExtract);
+    delete[] words;
 
     return 0;
 }
