@@ -8,8 +8,8 @@ class Input
 public:
     Input();
 
-    string* fileIn(char *argv[],int& numWords, int& numExtract);
-    void sort(int numWords, string *words);
+    string* fileIn(char *argv[],int& numWords, int& numExtract);    //Read in file
+    void sort(int numWords, string *words); //sort length and alphabetically
 };
 
 #endif // INPUT_H
