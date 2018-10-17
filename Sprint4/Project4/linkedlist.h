@@ -82,6 +82,7 @@ void LinkedList::insertAt(int pos, T val)
     }
 }
 
+template <typename T>
 void LinkedList::removeAt(int pos)
 {
     if(pos >=length)
@@ -105,4 +106,24 @@ void LinkedList::removeAt(int pos)
     }
 }
 
+template <typename T>
+void LinkedList::removeFront()
+{
+    if(head == nullptr)
+        return;
+    if(head == tail)
+    {
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+        length--;
+    }
+    else
+    {
+        head = head->next;
+        delete head->prev;
+        head->prev = nullptr;
+        length--;
+    }
+}
 #endif // LINKEDLIST_H
