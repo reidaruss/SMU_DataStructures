@@ -82,4 +82,27 @@ void LinkedList::insertAt(int pos, T val)
     }
 }
 
+void LinkedList::removeAt(int pos)
+{
+    if(pos >=length)
+        throw "Out of range.";
+    ListNode* curr = headdd;
+    while(pos > 0)
+    {
+        curr = curr->next;
+        pos--;
+    }
+    if(curr == head)
+        removeFront();
+    else if(curr == tail)
+        removeBack();
+    else
+    {
+        curr->prev->next = curr->next;
+        curr->next->prev = curr->prev;
+        delete curr;
+        length--;
+    }
+}
+
 #endif // LINKEDLIST_H
