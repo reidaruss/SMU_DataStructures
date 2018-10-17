@@ -20,6 +20,8 @@ public:
     void removeFront();
     void addBack(T val);
     void addFront(T val);
+    void resetIterator();
+
 
 
 };
@@ -125,5 +127,11 @@ void LinkedList::removeFront()
         head->prev = nullptr;
         length--;
     }
+}
+
+template <typename T>
+void LinkedList::resetIterator()
+{
+    curr = head;
 }
 #endif // LINKEDLIST_H
