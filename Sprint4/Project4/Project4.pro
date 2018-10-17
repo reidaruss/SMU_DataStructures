@@ -5,13 +5,10 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-    linkedlist.cpp \
     stack.cpp \
-    adjacencylist.cpp \
-    listnode.cpp
+    adjacencylist.cpp
 
 HEADERS += \
     linkedlist.h \
     stack.h \
-    adjacencylist.h \
-    listnode.h
+    adjacencylist.h
