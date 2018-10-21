@@ -8,9 +8,9 @@ template<class T>
 class LinkedList
 {
 private:
-    ListNode* head, *tail;
+    ListNode<T>* head, *tail;
     int length;
-    ListNode* curr;
+    ListNode<T>* curr;
 
 public:
     LinkedList();
@@ -31,8 +31,8 @@ class ListNode
 {
     template<class U> friend class LinkedList;
 private:
-    ListNode<T>* next;
-    ListNode<T>* prev;
+    ListNode* next;
+    ListNode* prev;
     T payload;
 public:
     ListNode(int val);
@@ -41,6 +41,23 @@ public:
 template <typename T>
 ListNode::ListNode(int val):next(nullptr),prev(nullptr),data(val){}
 
+template <typename T>
+LinkedList::operator=(const LinkedList& rhs)
+{
+    if(head != nullptr)
+        clear();
+    ListNode* curr = rhs.head;
+    while(curr != nullptr)
+    {
+        addBack(curr->data);
+        curr = curr->next;
+    }
+}
+
+
+
+
+template <typename T>
 void LinkedList::insert(T val)
 {
     if(head == nullptr)
