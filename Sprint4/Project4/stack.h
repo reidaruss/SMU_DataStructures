@@ -4,13 +4,17 @@
 
 using namespace std;
 
+
 class Stack
 {
 private:
     LinkedList<string> data;
+    int size;
 public:
     Stack();
 
+    template <typename T>
+    LinkedList<T>& operator[](int i);
     void push(string val);
     string pop();
     bool isEmpty();

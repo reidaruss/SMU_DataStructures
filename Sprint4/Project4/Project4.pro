@@ -6,7 +6,8 @@ CONFIG -= qt
 SOURCES += \
         main.cpp \
     stack.cpp \
-    adjacencylist.cpp
+    adjacencylist.cpp \
+    test.cpp
 
 HEADERS += \
     linkedlist.h \

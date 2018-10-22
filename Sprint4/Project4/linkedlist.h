@@ -5,6 +5,21 @@
 using namespace std;
 
 template<class T>
+class ListNode
+{
+    template<class U> friend class LinkedList;
+private:
+    ListNode<T>* next;
+    ListNode<T>* prev;
+    T payload;
+public:
+    ListNode(T val);
+
+};
+
+
+
+template<class T>
 class LinkedList
 {
 private:
@@ -14,6 +29,8 @@ private:
 
 public:
     LinkedList();
+    T& operator[](int i);
+    LinkedList& operator=(const LinkedList<T>& rhs);
     void insert(T val);
     void insertAt(int pos, T val);
     void removeAt(int pos);
@@ -21,32 +38,28 @@ public:
     void addBack(T val);
     void addFront(T val);
     void resetIterator();
+    int getLen();
 
 
 
 };
 
-template<class T>
-class ListNode
+template <typename T>
+int LinkedList<T>::getLen()
 {
-    template<class U> friend class LinkedList;
-private:
-    ListNode* next;
-    ListNode* prev;
-    T payload;
-public:
-    ListNode(int val);
-};
+    return length;
+}
+
 
 template <typename T>
-ListNode::ListNode(int val):next(nullptr),prev(nullptr),data(val){}
+ListNode<T>::ListNode(T val):next(nullptr),prev(nullptr),payload(val){}
 
 template <typename T>
-LinkedList::operator=(const LinkedList& rhs)
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs)
 {
     if(head != nullptr)
-        clear();
-    ListNode* curr = rhs.head;
+        //clear();
+    ListNode<T>* curr = rhs.head;
     while(curr != nullptr)
     {
         addBack(curr->data);
@@ -54,29 +67,50 @@ LinkedList::operator=(const LinkedList& rhs)
     }
 }
 
+template <typename T>
+T& LinkedList<T>::operator[](int i)
+{
+    if(i >= length)
+        cerr << "op[] Unable to access. Out of scope" << endl;
+    else
+    {
+        ListNode<T>* curr = head;
+        if(curr == nullptr)
+        {
+
+            return curr->payload;
+        }
+        while(curr->next != nullptr && i > 0)
+        {
+            curr = curr->next;
+            i--;
+        }
+        return curr->payload;
+    }
+}
 
 
 
 template <typename T>
-void LinkedList::insert(T val)
+void LinkedList<T>::insert(T val)
 {
     if(head == nullptr)
     {
-        head = new ListNode(val);
+        head = new ListNode<T>(val);
         tail = head;
     }
     else
     {
-        tail->next = new ListNode(val);
+        tail->next = new ListNode<T>(val);
         tail->next->prev = tail;
         tail = tail->next;
     }
 }
 
 template <typename T>
-void LinkedList::insertAt(int pos, T val)
+void LinkedList<T>::insertAt(int pos, T val)
 {
-    ListNode* curr = head;
+    ListNode<T>* curr = head;
     if(curr == nullptr)
     {
         addFront(val);
@@ -93,7 +127,7 @@ void LinkedList::insertAt(int pos, T val)
         addBack(val);
     else
     {
-        ListNode* temp = new ListNode(val);
+        ListNode<T>* temp = new ListNode<T>(val);
         temp->prev = curr;
         temp->next = curr->next;
         curr->next->prev = temp;
@@ -102,11 +136,11 @@ void LinkedList::insertAt(int pos, T val)
 }
 
 template <typename T>
-void LinkedList::removeAt(int pos)
+void LinkedList<T>::removeAt(int pos)
 {
     if(pos >=length)
         throw "Out of range.";
-    ListNode* curr = headdd;
+    ListNode<T>* curr = head;
     while(pos > 0)
     {
         curr = curr->next;
@@ -114,8 +148,8 @@ void LinkedList::removeAt(int pos)
     }
     if(curr == head)
         removeFront();
-    else if(curr == tail)
-        removeBack();
+    //else if(curr == tail)
+        //removeBack();
     else
     {
         curr->prev->next = curr->next;
@@ -126,7 +160,7 @@ void LinkedList::removeAt(int pos)
 }
 
 template <typename T>
-void LinkedList::removeFront()
+void LinkedList<T>::removeFront()
 {
     if(head == nullptr)
         return;
@@ -147,7 +181,7 @@ void LinkedList::removeFront()
 }
 
 template <typename T>
-void LinkedList::resetIterator()
+void LinkedList<T>::resetIterator()
 {
     curr = head;
 }
