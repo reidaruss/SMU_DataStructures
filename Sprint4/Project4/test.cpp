@@ -53,7 +53,6 @@ TEST_CASE("Stack Class","[Stack]")
         REQUIRE(s[1] == "hello2");
         REQUIRE(s[2] == "hello3");
 
-
-
     }
+
 }

@@ -39,6 +39,8 @@ public:
     void addFront(T val);
     void resetIterator();
     int getLen();
+    bool contains(string val);
+    LinkedList<T> getNext();
 
 
 
@@ -237,10 +239,29 @@ void LinkedList<T>::removeFront()
         length--;
     }
 }
+template <typename T>
+bool LinkedList<T>::contains(string val)
+{
+//    for(int i = 0; i < length; i++)
+
+//        if(data[i] == val)
+//            return true;
+//        return false;
+
+}
+
+
 
 template <typename T>
 void LinkedList<T>::resetIterator()
 {
     curr = head;
 }
+
+//template <typename T>
+//LinkedList<T> LinkedList<T>::getNext()
+//{
+//    curr = curr->next;
+//    return *curr;
+//}
 #endif // LINKEDLIST_H
