@@ -122,6 +122,45 @@ void LinkedList<T>::insert(T val)
         length++;
     }
 }
+template <typename T>
+void LinkedList<T>::addFront(T val)
+{
+    if(head == nullptr)
+    {
+        head = new ListNode<T>(val);
+        tail = head;
+        length++;
+    }
+    else
+    {
+        curr = head;
+        head = new ListNode<T>(val);
+        head->next = curr;
+        curr->prev = head;
+    }
+
+
+}
+
+template <typename T>
+void LinkedList<T>::addBack(T val)
+{
+    if(tail == nullptr)
+    {
+        head = new ListNode<T>(val);
+        tail = head;
+        length++;
+    }
+    else
+    {
+        curr = tail;
+        tail = new ListNode<T>(val);
+        tail->prev = curr;
+        curr->next = tail;
+    }
+
+
+}
 
 template <typename T>
 void LinkedList<T>::insertAt(int pos, T val)
@@ -132,7 +171,7 @@ void LinkedList<T>::insertAt(int pos, T val)
         addFront(val);
         return;
     }
-    while(curr->next != nullptr && pos > 0)
+    while(curr->next != nullptr && pos-1 > 0)
     {
         curr = curr->next;
         pos--;
