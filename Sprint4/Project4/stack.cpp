@@ -1,12 +1,12 @@
 #include "stack.h"
 
-//Stack::Stack()
-//{
+Stack::Stack()
+{
+    size = 0;
+}
 
-//}
 
-template <typename T>
-LinkedList<T>& Stack::operator[](int i)
+string& Stack::operator[](int i)
 {
     if(i >= size)
         cerr << "op[] Unable to access. Out of scope" << endl;
@@ -16,13 +16,15 @@ LinkedList<T>& Stack::operator[](int i)
 
 void Stack::push(string val)
 {
-    //data.addToBack(val);
+    data.addBack(val);
+    size ++;
 }
 
 string Stack::pop()
 {
     string temp = data[data.getLen() - 1]; // or string temp = peek();
     //data.removeBack();
+    size--;
     return temp;
 }
 

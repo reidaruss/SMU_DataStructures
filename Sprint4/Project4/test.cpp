@@ -1,5 +1,6 @@
 #include "catch.hpp"
 #include "linkedlist.h"
+#include "stack.h"
 #include <string>
 
 using namespace std;
@@ -37,5 +38,22 @@ TEST_CASE("Linked List Class","[LinkedList]")
         REQUIRE(s[2] == "Hello2");
         REQUIRE(s[3] == "hello3");
         REQUIRE(s[1] == "hello2");
+    }
+}
+
+TEST_CASE("Stack Class","[Stack]")
+{
+    SECTION("Push test")
+    {
+        Stack s;
+        s.push("hello");
+        REQUIRE(s[0] == "hello");
+        s.push("hello2");
+        s.push("hello3");
+        REQUIRE(s[1] == "hello2");
+        REQUIRE(s[2] == "hello3");
+
+
+
     }
 }

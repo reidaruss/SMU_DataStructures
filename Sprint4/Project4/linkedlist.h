@@ -157,6 +157,7 @@ void LinkedList<T>::addBack(T val)
         tail = new ListNode<T>(val);
         tail->prev = curr;
         curr->next = tail;
+        length++;
     }
 
 

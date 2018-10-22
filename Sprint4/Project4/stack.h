@@ -13,8 +13,8 @@ private:
 public:
     Stack();
 
-    template <typename T>
-    LinkedList<T>& operator[](int i);
+
+    string& operator[](int i);
     void push(string val);
     string pop();
     bool isEmpty();
