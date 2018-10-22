@@ -45,6 +45,15 @@ public:
 };
 
 template <typename T>
+LinkedList<T>::LinkedList()
+{
+    head = nullptr;
+    tail = nullptr;
+    length = 0;
+    curr = nullptr;
+}
+
+template <typename T>
 int LinkedList<T>::getLen()
 {
     return length;
@@ -72,14 +81,19 @@ T& LinkedList<T>::operator[](int i)
 {
     if(i >= length)
         cerr << "op[] Unable to access. Out of scope" << endl;
+    else if(i == 0)
+    {
+        curr = head;
+        return curr->payload;
+    }
     else
     {
         ListNode<T>* curr = head;
         if(curr == nullptr)
         {
-
             return curr->payload;
         }
+
         while(curr->next != nullptr && i > 0)
         {
             curr = curr->next;
@@ -98,12 +112,14 @@ void LinkedList<T>::insert(T val)
     {
         head = new ListNode<T>(val);
         tail = head;
+        length++;
     }
     else
     {
         tail->next = new ListNode<T>(val);
         tail->next->prev = tail;
         tail = tail->next;
+        length++;
     }
 }
 
@@ -132,6 +148,7 @@ void LinkedList<T>::insertAt(int pos, T val)
         temp->next = curr->next;
         curr->next->prev = temp;
         curr->next = temp;
+        length++;
     }
 }
 
@@ -156,6 +173,7 @@ void LinkedList<T>::removeAt(int pos)
         curr->next->prev = curr->prev;
         delete curr;
         length--;
+
     }
 }
 

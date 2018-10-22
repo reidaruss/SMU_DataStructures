@@ -7,6 +7,6 @@ using namespace std;
 
 int main()
 {
-
+    return Catch::Session().run();
     return 0;
 }
