@@ -35,6 +35,7 @@ public:
     void insertAt(int pos, T val);
     void removeAt(int pos);
     void removeFront();
+    void removeBack();
     void addBack(T val);
     void addFront(T val);
     void resetIterator();
@@ -90,7 +91,7 @@ T& LinkedList<T>::operator[](int i)
     }
     else
     {
-        ListNode<T>* curr = head;
+        curr = head;
         if(curr == nullptr)
         {
             return curr->payload;
@@ -239,6 +240,28 @@ void LinkedList<T>::removeFront()
         length--;
     }
 }
+template <typename T>
+void LinkedList<T>::removeBack()
+{
+    if(tail == nullptr)
+        return;
+    if(head == tail)
+    {
+        delete tail;
+        head = nullptr;
+        tail = nullptr;
+        length--;
+
+    }
+    else
+    {
+        tail = tail->prev;
+        delete tail->next;
+        tail->next = nullptr;
+        length--;
+    }
+}
+
 template <typename T>
 bool LinkedList<T>::contains(string val)
 {

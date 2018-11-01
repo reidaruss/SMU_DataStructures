@@ -55,4 +55,54 @@ TEST_CASE("Stack Class","[Stack]")
 
     }
 
+    SECTION("Pop Test")
+    {
+        Stack s;
+        s.push("hello");
+        s.push("hello2");
+        s.push("hello3");
+
+        REQUIRE(s[2] == "hello3");
+        string test = s.pop();
+        REQUIRE(test == "hello3");
+
+
+
+    }
+
+    SECTION("isEmpty() Test")
+    {
+        Stack s;
+        string temp;
+        REQUIRE(s.isEmpty() == true);
+        s.push("hello");
+        s.push("hello2");
+        REQUIRE(s.isEmpty() == false);
+        temp = s.pop();
+        temp = s.pop();
+        REQUIRE(s.isEmpty() == true);
+    }
+
+    SECTION("Contains() Test")
+    {
+        Stack s;
+        s.push("hello");
+        s.push("hello2");
+        REQUIRE(s.contains("hello3") == false);
+        REQUIRE(s.contains("hello") == true);
+        REQUIRE(s.contains("hello2") == true);
+    }
+
+    SECTION("peek() Test")
+    {
+        Stack s;
+        s.push("hello");
+        REQUIRE(s.peek() == "hello");
+        s.push("hello2");
+        REQUIRE(s.peek() == "hello2");
+        string temp = s.pop();
+        REQUIRE(s.peek() == "hello");
+
+    }
+
 }
