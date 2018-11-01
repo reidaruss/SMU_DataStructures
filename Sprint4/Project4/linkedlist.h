@@ -42,6 +42,8 @@ public:
     int getLen();
     bool contains(string val);
     LinkedList<T> getNext();
+    void clear();
+    bool isEmpty();
 
 
 
@@ -70,11 +72,11 @@ template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs)
 {
     if(head != nullptr)
-        //clear();
+        this->clear();
     ListNode<T>* curr = rhs.head;
     while(curr != nullptr)
     {
-        addBack(curr->data);
+        addBack(curr->payload);
         curr = curr->next;
     }
 }
@@ -263,10 +265,25 @@ void LinkedList<T>::removeBack()
 }
 
 template <typename T>
+void LinkedList<T>::clear()
+{
+    while(length != 0)
+        removeBack();
+}
+
+template <typename T>
+bool LinkedList<T>::isEmpty()
+{
+   if(head == nullptr && tail == nullptr)
+       return true;
+   else
+       return false;
+}
+
+template <typename T>
 bool LinkedList<T>::contains(string val)
 {
 //    for(int i = 0; i < length; i++)
-
 //        if(data[i] == val)
 //            return true;
 //        return false;

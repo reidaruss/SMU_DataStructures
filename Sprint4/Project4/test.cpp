@@ -39,6 +39,36 @@ TEST_CASE("Linked List Class","[LinkedList]")
         REQUIRE(s[3] == "hello3");
         REQUIRE(s[1] == "hello2");
     }
+    SECTION("clear() Test")
+    {
+        LinkedList<string> l;
+        l.insert("hello");
+        l.insert("hello2");
+        l.insert("hello3");
+        REQUIRE(l.isEmpty() == false);
+        l.clear();
+        REQUIRE(l.isEmpty() == true);
+    }
+    SECTION("operator= Test")
+    {
+        LinkedList<string> l;
+        l.insert("hello");
+        l.insert("hello2");
+        l.insert("hello3");
+        LinkedList<string> s;
+        s = l;
+        REQUIRE(s[0] == "hello");
+        REQUIRE(s[1] == "hello2");
+        REQUIRE(s[2] == "hello3");
+        LinkedList<string> t;
+        t.insert("Hello");
+        t.insert("Hello2");
+        t.insert("Hello3");
+        l = t;
+        REQUIRE(l[0] == "Hello");
+        REQUIRE(l[1] == "Hello2");
+        REQUIRE(l[2] == "Hello3");
+    }
 }
 
 TEST_CASE("Stack Class","[Stack]")
