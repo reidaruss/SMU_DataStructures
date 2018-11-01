@@ -142,6 +142,7 @@ void LinkedList<T>::addFront(T val)
         head = new ListNode<T>(val);
         head->next = curr;
         curr->prev = head;
+        length++;
     }
 
 
@@ -210,8 +211,8 @@ void LinkedList<T>::removeAt(int pos)
     }
     if(curr == head)
         removeFront();
-    //else if(curr == tail)
-        //removeBack();
+    else if(curr == tail)
+        removeBack();
     else
     {
         curr->prev->next = curr->next;

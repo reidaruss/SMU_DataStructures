@@ -69,6 +69,54 @@ TEST_CASE("Linked List Class","[LinkedList]")
         REQUIRE(l[1] == "Hello2");
         REQUIRE(l[2] == "Hello3");
     }
+    SECTION("removeFront() Test")
+    {
+        LinkedList<string> l;
+        l.insert("hello");
+        l.insert("hello2");
+        l.insert("hello3");
+        l.removeFront();
+        REQUIRE(l[0] == "hello2");
+        REQUIRE(l[1] == "hello3");
+    }
+    SECTION("addFront() Test")
+    {
+        LinkedList<string> l;
+        l.insert("hello");
+        l.insert("hello2");
+        l.insert("hello3");
+        l.addFront("Hello1");
+        REQUIRE(l[0] == "Hello1");
+        l.addFront("Hello");
+        REQUIRE(l[0] == "Hello");
+        REQUIRE(l[1] == "Hello1");
+        REQUIRE(l[2] == "hello");
+        REQUIRE(l[3] == "hello2");
+        REQUIRE(l[4] == "hello3");
+    }
+    SECTION("addBack() Test")
+    {
+        LinkedList<string> l;
+        l.insert("hello");
+        l.insert("hello2");
+        l.insert("hello3");
+        l.addBack("hello4");
+        REQUIRE(l[3] == "hello4");
+        l.addBack("hello5");
+        REQUIRE(l[4] == "hello5");
+    }
+    SECTION("removeAt()")
+    {
+        LinkedList<string> l;
+        l.insert("hello");
+        l.insert("hello2");
+        l.insert("hello3");
+        l.removeAt(1);
+        REQUIRE(l[0] == "hello");
+        REQUIRE(l[1] == "hello3");
+        l.removeAt(0);
+        REQUIRE(l[0] == "hello3");
+    }
 }
 
 TEST_CASE("Stack Class","[Stack]")
