@@ -40,10 +40,11 @@ public:
     void addFront(T val);
     void resetIterator();
     int getLen();
-    bool contains(string val);
+    bool contains(T val);
     LinkedList<T> getNext();
     void clear();
     bool isEmpty();
+
 
 
 
@@ -165,8 +166,6 @@ void LinkedList<T>::addBack(T val)
         curr->next = tail;
         length++;
     }
-
-
 }
 
 template <typename T>
@@ -281,14 +280,19 @@ bool LinkedList<T>::isEmpty()
        return false;
 }
 
-template <typename T>
-bool LinkedList<T>::contains(string val)
-{
-//    for(int i = 0; i < length; i++)
-//        if(data[i] == val)
-//            return true;
-//        return false;
 
+
+template <typename T>
+bool LinkedList<T>::contains(T val)
+{
+    curr = head;
+    for(int i = 0; i< length ; i++)
+    {
+        if(curr->payload == val)
+            return true;
+        curr = curr->next;
+    }
+    return false;
 }
 
 
@@ -297,6 +301,7 @@ template <typename T>
 void LinkedList<T>::resetIterator()
 {
     curr = head;
+
 }
 
 //template <typename T>

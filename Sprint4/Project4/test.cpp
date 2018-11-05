@@ -1,6 +1,7 @@
 #include "catch.hpp"
 #include "linkedlist.h"
 #include "stack.h"
+#include "adjacencylist.h"
 #include <string>
 
 using namespace std;
@@ -28,7 +29,7 @@ TEST_CASE("Linked List Class","[LinkedList]")
         s.insert("hello3");
         REQUIRE(s.getLen() == 3);
     }
-    SECTION("Inset At Test")
+    SECTION("Insert At Test")
     {
         LinkedList<string> s;
         s.insert("hello");
@@ -183,4 +184,18 @@ TEST_CASE("Stack Class","[Stack]")
 
     }
 
+}
+
+TEST_CASE("Adjacencylist Class","[adjacencylist]")
+{
+    SECTION("insert() Test")
+    {
+        AdjacencyList<string> a;
+        a.insert("hello","Hello");
+        REQUIRE(a.getAt(0,0) == "hello");
+        REQUIRE(a.getAt(0,1) == "Hello");
+        a.insert("hello1","Hello1");
+        REQUIRE(a.getAt(1,0) == "hello1");
+        REQUIRE(a.getAt(1,1) == "Hello1");
+    }
 }

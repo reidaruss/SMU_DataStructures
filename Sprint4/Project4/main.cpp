@@ -3,11 +3,17 @@
 #include "catch.hpp"
 #include <iostream>
 #include "linkedlist.h"
+#include "input.h"
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
-    return Catch::Session().run();
+    Input file(argv);
+    if(strcmp(argv[1], "-t") == 0)
+    {
+        return Catch::Session().run();
+    }
+
     return 0;
 }
