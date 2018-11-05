@@ -37,7 +37,8 @@ Input::Input(char *argv[])
         }
     }
 
-
     fin.close();
+
+
 
 }

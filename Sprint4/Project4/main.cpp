@@ -10,8 +10,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    Input file(argv);
-    if(strcmp(argv[1], "-t") == 0)
+    if(strcmp(argv[1], "-r") == 0)
+    {
+        Input file(argv);
+    }
+
+    else if(strcmp(argv[1], "-t") == 0)
     {
         return Catch::Session().run();
     }

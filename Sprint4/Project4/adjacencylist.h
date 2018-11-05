@@ -15,6 +15,8 @@ public:
     LinkedList<T> findWhereFirstIs(string val);
     LinkedList<T> stepIterator(string val);
     string getAt(int i, int j);
+    int getSize();
+
 
 };
 
@@ -28,25 +30,42 @@ AdjacencyList<T>::AdjacencyList()
 template <typename T>
 void AdjacencyList<T>::insert(T find, T val)
 {
-
-    for(int i = 0; i < data.getLen(); i ++)
+    bool added1 = false;
+    bool added2 = false;
+    for(int i = 0; i < size; i ++)
     {
         if(data[i][0] == find)
-            data[i].addBack(val);
-        else
         {
-            LinkedList<T> temp;
-            temp.addBack(find);
-            temp.addBack(val);
-            data.addBack(temp);
-            size++;
+            data[i].addBack(val);
+            added1 = true;
+            break;
         }
     }
-    if(data.getLen() == 0)
+
+    if(added1 == false)
     {
         LinkedList<T> temp;
         temp.addBack(find);
         temp.addBack(val);
+        data.addBack(temp);
+        size++;
+    }
+
+    for(int i = 0; i < size; i ++)
+    {
+        if(data[i][0] == val)
+        {
+            data[i].addBack(find);
+            added2 = true;
+            break;
+        }
+
+    }
+    if(added2 == false)
+    {
+        LinkedList<T> temp;
+        temp.addBack(val);
+        temp.addBack(find);
         data.addBack(temp);
         size++;
     }
@@ -68,6 +87,13 @@ LinkedList<T> AdjacencyList<T>::findWhereFirstIs(string val)
             return data[i];
     }
 }
+
+template <typename T>
+int AdjacencyList<T>::getSize()
+{
+    return size;
+}
+
 
 
 

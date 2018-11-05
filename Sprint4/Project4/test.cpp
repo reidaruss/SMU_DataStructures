@@ -195,7 +195,11 @@ TEST_CASE("Adjacencylist Class","[adjacencylist]")
         REQUIRE(a.getAt(0,0) == "hello");
         REQUIRE(a.getAt(0,1) == "Hello");
         a.insert("hello1","Hello1");
-        REQUIRE(a.getAt(1,0) == "hello1");
-        REQUIRE(a.getAt(1,1) == "Hello1");
+        REQUIRE(a.getAt(2,0) == "hello1");
+        REQUIRE(a.getAt(2,1) == "Hello1");
+        a.insert("Hello","hello1");
+        REQUIRE(a.getAt(1,2) == "hello1");
+        REQUIRE(a.getAt(2,2) == "Hello");
+
     }
 }
