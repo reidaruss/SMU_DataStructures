@@ -13,11 +13,12 @@ public:
     AdjacencyList();
     void insert(T find, T val);
     LinkedList<T> findWhereFirstIs(string val);
-    LinkedList<T> stepIterator(string val);
+    T stepIterator(string val);
     string getAt(int i, int j);
     int getSize();
-
-
+    void resetIters();
+    int getInnerSize(int i);
+    string getIter(string val);
 };
 
 
@@ -79,7 +80,7 @@ string AdjacencyList<T>::getAt(int i, int j)
 
 
 template <typename T>
-LinkedList<T> AdjacencyList<T>::findWhereFirstIs(string val)
+LinkedList<T> AdjacencyList<T>::findWhereFirstIs(string val)    //return type was LinkedList<T> (return data[i])
 {
     for(int i =0; i < data.getLen(); i++)
     {
@@ -95,11 +96,50 @@ int AdjacencyList<T>::getSize()
 }
 
 
+template <typename T>
+void AdjacencyList<T>::resetIters()
+{
+    for(int i = 0; i < size; i ++)
+    {
+        data[i].resetIterator();
+    }
+}
+
+template <typename T>
+string AdjacencyList<T>::getIter(string val)
+{
+    for(int i = 0; i < data.getLen(); i++)
+    {
+        if(data[i][0] == val)
+            return data[i].getCurr();
+    }
 
 
-//LinkedList<string> AdjacencyList::stepIterator(string val)
-//{
-//    LinkedList<string> L = findWhereFirstIs(val);
-//    return L.getNext();
-//}
+}
+
+
+template <typename T>
+T AdjacencyList<T>::stepIterator(string val)      //return type was LInkedList<string> (return L.getNext();)
+{
+    for(int i =0; i < data.getLen(); i++)
+    {
+        if(data[i][0] == val)
+        {
+            return data[i].getNext();//sets curr = curr->next and returns curr->payload.
+        }
+    }
+
+
+
+
+
+}
+
+template <typename T>
+int AdjacencyList<T>::getInnerSize(int i)
+{
+    return data[i].getLen();
+}
+
+
 #endif // ADJACENCYLIST_H

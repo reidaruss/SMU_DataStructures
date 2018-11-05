@@ -41,9 +41,11 @@ public:
     void resetIterator();
     int getLen();
     bool contains(T val);
-    LinkedList<T> getNext();
+    T getNext();    //return type was LinkedList<T>
     void clear();
     bool isEmpty();
+    bool nextExists();
+    string getCurr();
 
 
 
@@ -85,27 +87,25 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs)
 template <typename T>
 T& LinkedList<T>::operator[](int i)
 {
+    ListNode<T>* temp = head;
     if(i >= length)
         cerr << "op[] Unable to access. Out of scope" << endl;
     else if(i == 0)
     {
-        curr = head;
-        return curr->payload;
+        temp = head;
+        return temp->payload;
     }
     else
     {
-        curr = head;
-        if(curr == nullptr)
+
+        if(head == nullptr)
         {
-            return curr->payload;
+            return head->payload;
         }
 
-        while(curr->next != nullptr && i > 0)
-        {
-            curr = curr->next;
-            i--;
-        }
-        return curr->payload;
+        for(int j = 0; j < i; j++)
+            temp = temp->next;
+        return temp->payload;
     }
 }
 
@@ -304,10 +304,33 @@ void LinkedList<T>::resetIterator()
 
 }
 
-//template <typename T>
-//LinkedList<T> LinkedList<T>::getNext()
-//{
-//    curr = curr->next;
-//    return *curr;
-//}
+template <typename T>
+T LinkedList<T>::getNext()  //return type was LinkedList<T>
+{
+    if(nextExists())
+    {
+        curr = curr->next;
+        return curr->payload;
+    }
+    else
+        return "end";
+
+}
+
+template <typename T>
+bool LinkedList<T>::nextExists()
+{
+    if(curr->next == nullptr)
+        return false;
+    else
+        return true;
+}
+
+template <typename T>
+string LinkedList<T>::getCurr()
+{
+    return curr->payload;
+}
+
+
 #endif // LINKEDLIST_H

@@ -134,20 +134,7 @@ TEST_CASE("Stack Class","[Stack]")
 
     }
 
-    SECTION("Pop Test")
-    {
-        Stack s;
-        s.push("hello");
-        s.push("hello2");
-        s.push("hello3");
 
-        REQUIRE(s[2] == "hello3");
-        string test = s.pop();
-        REQUIRE(test == "hello3");
-
-
-
-    }
 
     SECTION("isEmpty() Test")
     {
@@ -157,8 +144,8 @@ TEST_CASE("Stack Class","[Stack]")
         s.push("hello");
         s.push("hello2");
         REQUIRE(s.isEmpty() == false);
-        temp = s.pop();
-        temp = s.pop();
+        s.pop();
+        s.pop();
         REQUIRE(s.isEmpty() == true);
     }
 
@@ -179,7 +166,7 @@ TEST_CASE("Stack Class","[Stack]")
         REQUIRE(s.peek() == "hello");
         s.push("hello2");
         REQUIRE(s.peek() == "hello2");
-        string temp = s.pop();
+        s.pop();
         REQUIRE(s.peek() == "hello");
 
     }

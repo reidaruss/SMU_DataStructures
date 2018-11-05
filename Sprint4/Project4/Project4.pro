@@ -7,10 +7,12 @@ SOURCES += \
         main.cpp \
     stack.cpp \
     test.cpp \
-    input.cpp
+    input.cpp \
+    output.cpp
 
 HEADERS += \
     linkedlist.h \
     stack.h \
     adjacencylist.h \
-    input.h
+    input.h \
+    output.h

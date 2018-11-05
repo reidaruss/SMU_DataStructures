@@ -20,12 +20,12 @@ void Stack::push(string val)
     size ++;
 }
 
-string Stack::pop() //change this to a void. the return is only for tests
+void Stack::pop() //change this to a void. the return is only for tests
 {
-    string temp = data[data.getLen() - 1]; // or string temp = peek();
+    //string temp = data[data.getLen() - 1]; // or string temp = peek();
     data.removeBack();        //do this next
     size--;
-    return temp;
+    //return temp;
 }
 
 bool Stack::isEmpty()
@@ -44,5 +44,10 @@ bool Stack::contains(string val)
 
 string Stack::peek()
 {
-    return data[data.getLen() - 1]; //faster with data.last();
+    return data[size - 1]; //faster with data.last();
+}
+
+int Stack::getSize()
+{
+    return size;
 }

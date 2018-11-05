@@ -16,10 +16,11 @@ public:
 
     string& operator[](int i);
     void push(string val);
-    string pop();
+    void pop();
     bool isEmpty();
     bool contains(string val);
     string peek();
+    int getSize();
 
 
 };
