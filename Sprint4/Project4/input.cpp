@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <sstream>
 #include "output.h"
+#include "linkedlist.h"
 using namespace std;
 
 Input::Input(char *argv[])
@@ -24,7 +25,7 @@ Input::Input(char *argv[])
     j = 0;
     for(int i = 0; i < conNum; i ++)
     {
-        fin >> str;
+        fin >> str;                 //input next line into str;
         istringstream s(str);
         while(getline(s,temp1,'|'))
         {
@@ -41,8 +42,7 @@ Input::Input(char *argv[])
     fin.close();
 
     requestedDistanceInput(argv, adj);
-    //Output o;   //THIS IS TEMPORARY
-    //o.writeOut(argv, adj);
+
 }
 
 //void Input::sepOfTwo(AdjacencyList<string> adj)     //count the number of immediate connections and indirect connects 2 steps away.
@@ -57,6 +57,7 @@ Input::Input(char *argv[])
 
 void Input::requestedDistanceInput(char* argv[], AdjacencyList<string> &adj)
 {
+
     ifstream fin(argv[3]);
     if(!fin)
         cout << "File cannot be opened." << endl;
@@ -67,21 +68,24 @@ void Input::requestedDistanceInput(char* argv[], AdjacencyList<string> &adj)
     int disNum; //number of degrees of seperation to process.
 
     fin >> disNum;
-    cout << disNum << endl;
+
+    string* inputT = new string[disNum];
     int* distance = new int[disNum];    //array to hold the degrees of seperation for each line.
     int counter = 0;    //number of degrees of seperation that has been recorded. (used when assigning a new one to distance[counter])
     int j = 0;
     for(int i = 0; i < disNum; i ++)
     {
-        fin >> str;
-        istringstream s(str);
-        while(getline(s,temp1,'|'))
+        fin >> str; //get next line put into string
+        inputT[i] = str;
+        istringstream s(str);   //make stringstream object to use geline
+        while(getline(s,temp1,'|')) //parse with getline
         {
-            temp[j] = temp1;
+            temp[j] = temp1;    //fille 2 element array and when 2, calculated degree of sep
+
             j++;
             if(j == 2)
             {
-                //adj.insert(temp[0],temp[1]);
+
                 requestedDistance(adj, distance, temp, counter);
                 j = 0;
                 counter++;
@@ -91,11 +95,9 @@ void Input::requestedDistanceInput(char* argv[], AdjacencyList<string> &adj)
 
     fin.close();
 
-    for(int i = 0; i< disNum; i++)
-    {
-        cout << distance[i] << endl;
-    }
 
+    Output o;
+    o.writeOut(argv, adj, distance, disNum, inputT);  //output object and write to file.
 
 }
 
@@ -116,17 +118,17 @@ void Input::requestedDistance(AdjacencyList<string>& adj, int *numDist, string t
         else
         {
 
-           nextCheck = adj.stepIterator(s.peek()); //come back to this
+           nextCheck = adj.stepIterator(s.peek());  //check if next is real
            while(s.contains(nextCheck) && nextCheck != "end")
            {
-               nextCheck = adj.stepIterator(s.peek());
+               nextCheck = adj.stepIterator(s.peek());  //if real and in stack step iter
 
            }
-           if(nextCheck != "end")
+           if(nextCheck != "end")   //if real but not on stack push
                s.push(nextCheck);
            else
            {
-               adj.findWhereFirstIs(s.peek()).resetIterator();
+               adj.findWhereFirstIs(s.peek()).resetIterator();  //if not real pop
                s.pop();
            }
 

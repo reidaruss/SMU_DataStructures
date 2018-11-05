@@ -7,7 +7,7 @@ class Output
 public:
     Output();
 
-    void writeOut(char* argv[], AdjacencyList<string> adj);
+    void writeOut(char* argv[], AdjacencyList<string> adj, int* distance, int numDist, string *inputT);
 };
 
 #endif // OUTPUT_H

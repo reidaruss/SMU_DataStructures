@@ -7,7 +7,7 @@ using namespace std;
 template<class T>
 class ListNode
 {
-    template<class U> friend class LinkedList;
+    template<class U> friend class LinkedList;  //LISTNODE
 private:
     ListNode<T>* next;
     ListNode<T>* prev;
@@ -20,7 +20,7 @@ public:
 
 
 template<class T>
-class LinkedList
+class LinkedList        //LINKEDLIST
 {
 private:
     ListNode<T>* head, *tail;
@@ -46,6 +46,7 @@ public:
     bool isEmpty();
     bool nextExists();
     string getCurr();
+   // ~LinkedList();
 
 
 
@@ -116,7 +117,7 @@ void LinkedList<T>::insert(T val)
 {
     if(head == nullptr)
     {
-        head = new ListNode<T>(val);
+        head = new ListNode<T>(val);    //check if head is null and insert
         tail = head;
         length++;
     }
@@ -133,7 +134,7 @@ void LinkedList<T>::addFront(T val)
 {
     if(head == nullptr)
     {
-        head = new ListNode<T>(val);
+        head = new ListNode<T>(val);    //new node in front
         tail = head;
         length++;
     }
@@ -318,7 +319,7 @@ T LinkedList<T>::getNext()  //return type was LinkedList<T>
 }
 
 template <typename T>
-bool LinkedList<T>::nextExists()
+bool LinkedList<T>::nextExists()    //check if curr->next exists
 {
     if(curr->next == nullptr)
         return false;
@@ -332,5 +333,21 @@ string LinkedList<T>::getCurr()
     return curr->payload;
 }
 
+//template <typename T>
+//LinkedList<T>::~LinkedList()        //destructor
+//{
+//    if(this->head != nullptr)
+//    {
+//        ListNode<T>* temp = this->head;
+//        while(temp->next!= nullptr)
+//        {
+//            temp = temp->next;
+//            delete temp->prev;
+//        }
+//        delete temp;
+//    }
+
+
+//}
 
 #endif // LINKEDLIST_H

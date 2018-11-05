@@ -12,13 +12,13 @@ public:
 
     AdjacencyList();
     void insert(T find, T val);
-    LinkedList<T> findWhereFirstIs(string val);
+    LinkedList<T> findWhereFirstIs(string val); //find the linked list associated with a string
     T stepIterator(string val);
     string getAt(int i, int j);
     int getSize();
     void resetIters();
     int getInnerSize(int i);
-    string getIter(string val);
+    string getIter(string val); //get curr
 };
 
 
@@ -31,19 +31,19 @@ AdjacencyList<T>::AdjacencyList()
 template <typename T>
 void AdjacencyList<T>::insert(T find, T val)
 {
-    bool added1 = false;
-    bool added2 = false;
+    bool added1 = false;    //bool to check if find has been added
+    bool added2 = false;    //bool to check if val has been added
     for(int i = 0; i < size; i ++)
     {
         if(data[i][0] == find)
         {
-            data[i].addBack(val);
+            data[i].addBack(val);   //add back val if find is already there.
             added1 = true;
             break;
         }
     }
 
-    if(added1 == false)
+    if(added1 == false) //if find has not been found create a new link list push both vals then push to adj list
     {
         LinkedList<T> temp;
         temp.addBack(find);
@@ -52,7 +52,7 @@ void AdjacencyList<T>::insert(T find, T val)
         size++;
     }
 
-    for(int i = 0; i < size; i ++)
+    for(int i = 0; i < size; i ++)  //everything down here is the same as above just with checks for val then adding find
     {
         if(data[i][0] == val)
         {
@@ -73,14 +73,14 @@ void AdjacencyList<T>::insert(T find, T val)
 
 }
 template <typename T>
-string AdjacencyList<T>::getAt(int i, int j)
+string AdjacencyList<T>::getAt(int i, int j)    //get element at (used in tests)
 {
     return data[i][j];
 }
 
 
 template <typename T>
-LinkedList<T> AdjacencyList<T>::findWhereFirstIs(string val)    //return type was LinkedList<T> (return data[i])
+LinkedList<T> AdjacencyList<T>::findWhereFirstIs(string val)    //find where string is and return that linked list
 {
     for(int i =0; i < data.getLen(); i++)
     {
@@ -97,7 +97,7 @@ int AdjacencyList<T>::getSize()
 
 
 template <typename T>
-void AdjacencyList<T>::resetIters()
+void AdjacencyList<T>::resetIters() //reset all curr to head;
 {
     for(int i = 0; i < size; i ++)
     {
@@ -106,7 +106,7 @@ void AdjacencyList<T>::resetIters()
 }
 
 template <typename T>
-string AdjacencyList<T>::getIter(string val)
+string AdjacencyList<T>::getIter(string val)    //get curr
 {
     for(int i = 0; i < data.getLen(); i++)
     {
@@ -119,7 +119,7 @@ string AdjacencyList<T>::getIter(string val)
 
 
 template <typename T>
-T AdjacencyList<T>::stepIterator(string val)      //return type was LInkedList<string> (return L.getNext();)
+T AdjacencyList<T>::stepIterator(string val)
 {
     for(int i =0; i < data.getLen(); i++)
     {
@@ -136,7 +136,7 @@ T AdjacencyList<T>::stepIterator(string val)      //return type was LInkedList<s
 }
 
 template <typename T>
-int AdjacencyList<T>::getInnerSize(int i)
+int AdjacencyList<T>::getInnerSize(int i)   //get size of inner ll
 {
     return data[i].getLen();
 }
