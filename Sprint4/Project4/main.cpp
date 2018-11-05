@@ -4,6 +4,7 @@
 #include <iostream>
 #include "linkedlist.h"
 #include "input.h"
+#include "adjacencylist.h"
 
 using namespace std;
 

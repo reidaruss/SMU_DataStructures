@@ -11,7 +11,6 @@ private:
 public:
 
     AdjacencyList();
-    //T& operator[](int i);
     void insert(T find, T val);
     LinkedList<T> findWhereFirstIs(string val);
     LinkedList<T> stepIterator(string val);
@@ -19,29 +18,13 @@ public:
 
 };
 
-#endif // ADJACENCYLIST_H
+
 template <typename T>
 AdjacencyList<T>::AdjacencyList()
 {
     size = 0;
 }
-//template <typename T>
-//T& AdjacencyList<T>::operator[](int i)
-//{
-//    if( i >= size)
-//        cerr << "op[] Unable to access. Out of scope" << endl;
-//    else
-//        return data[i];
-////    if(i >= size)
-////        cerr << "op[] Unable to access. Out of scope" << endl;
-////    else if(i == 0)
-////    {
 
-////        curr = head;
-////        return curr->payload;
-////    }
-
-//}
 template <typename T>
 void AdjacencyList<T>::insert(T find, T val)
 {
@@ -56,6 +39,7 @@ void AdjacencyList<T>::insert(T find, T val)
             temp.addBack(find);
             temp.addBack(val);
             data.addBack(temp);
+            size++;
         }
     }
     if(data.getLen() == 0)
@@ -64,6 +48,7 @@ void AdjacencyList<T>::insert(T find, T val)
         temp.addBack(find);
         temp.addBack(val);
         data.addBack(temp);
+        size++;
     }
 
 }
@@ -91,3 +76,4 @@ LinkedList<T> AdjacencyList<T>::findWhereFirstIs(string val)
 //    LinkedList<string> L = findWhereFirstIs(val);
 //    return L.getNext();
 //}
+#endif // ADJACENCYLIST_H
